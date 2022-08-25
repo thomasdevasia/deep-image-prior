@@ -2,7 +2,7 @@ import os
 from .common_utils import *
 
 
-        
+# TODO:putting random noise in the image        
 def get_noisy_image(img_np, sigma):
     """Adds Gaussian noise to an image.
     

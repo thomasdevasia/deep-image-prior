@@ -59,6 +59,7 @@ def get_image_grid(images_np, nrow=8):
     
     return torch_grid.numpy()
 
+# TODO:plot image
 def plot_image_grid(images_np, nrow =8, factor=1, interpolation='lanczos'):
     """Draws images in a grid
     
@@ -91,6 +92,7 @@ def load(path):
     img = Image.open(path)
     return img
 
+# TODO:read image and return in pillow format and array format
 def get_image(path, imsize=-1):
     """Load an image and resize to a cpecific size. 
 
@@ -124,6 +126,7 @@ def fill_noise(x, noise_type):
     else:
         assert False
 
+# TODO:a noise
 def get_noise(input_depth, method, spatial_size, noise_type='u', var=1./10):
     """Returns a pytorch.Tensor of size (1 x `input_depth` x `spatial_size[0]` x `spatial_size[1]`) 
     initialized in a specific way.
@@ -152,6 +155,7 @@ def get_noise(input_depth, method, spatial_size, noise_type='u', var=1./10):
         
     return net_input
 
+# TODO:pillow image to array
 def pil_to_np(img_PIL):
     '''Converts image in PIL format to np.array.
     
@@ -194,7 +198,7 @@ def torch_to_np(img_var):
     '''
     return img_var.detach().cpu().numpy()[0]
 
-
+# TODO: main model run
 def optimize(optimizer_type, parameters, closure, LR, num_iter):
     """Runs optimization loop.
 
