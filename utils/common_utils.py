@@ -130,8 +130,16 @@ def fill_noise(x, noise_type):
     """Fills tensor `x` with noise of type `noise_type`."""
     if noise_type == 'u':
         x.uniform_()
+        print('uniform')
+    # normal or gaussian noise
     elif noise_type == 'n':
         x.normal_()
+        print('normal')
+    # poisson noise
+    elif noise_type == 'p':
+        rate = torch.rand(x.shape) * 5
+        x = torch.poisson(rate)
+        print('poisson')
     else:
         assert False
 
