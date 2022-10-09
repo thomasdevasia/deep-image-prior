@@ -129,19 +129,21 @@ def get_image(path, imsize=-1):
 def fill_noise(x, noise_type):
     """Fills tensor `x` with noise of type `noise_type`."""
     if noise_type == 'u':
-        x.uniform_()
         print('uniform')
+        return x.uniform_()
     # normal or gaussian noise
     elif noise_type == 'n':
-        x.normal_()
         print('normal')
+        return x.normal_()
     # poisson noise
     elif noise_type == 'p':
+        print('poisson')
         rate = torch.rand(x.shape) * 5
         x = torch.poisson(rate)
-        print('poisson')
+        return x
     else:
         assert False
+
 
 # TODO: fixed noise is generated here
 
@@ -162,8 +164,9 @@ def get_noise(input_depth, method, spatial_size, noise_type='u', var=1./10):
         shape = [1, input_depth, spatial_size[0], spatial_size[1]]
         net_input = torch.zeros(shape)
 
-        fill_noise(net_input, noise_type)
-        net_input *= var
+        # fill_noise(net_input, noise_type)
+        # net_input *= var
+        net_input = fill_noise(net_input, noise_type) * var
     elif method == 'meshgrid':
         assert input_depth == 2
         X, Y = np.meshgrid(np.arange(0, spatial_size[1])/float(
