@@ -144,6 +144,7 @@ def fill_noise(x, noise_type):
         return x
     # laplacian noise
     elif noise_type == 'l':
+        print('laplacian')
         loc, scale = 0., 1.
         x = np.random.laplace(loc, scale, x.shape)
         return np_to_torch(x)
