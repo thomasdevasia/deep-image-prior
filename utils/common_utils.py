@@ -142,6 +142,7 @@ def fill_noise(x, noise_type):
         rate = torch.rand(x.shape) * 5
         x = torch.poisson(rate)
         return x
+    # laplacian noise
     elif noise_type == 'l':
         loc, scale = 0., 1.
         x = np.random.laplace(loc, scale, x.shape)
