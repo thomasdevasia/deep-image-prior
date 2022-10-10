@@ -147,7 +147,7 @@ def fill_noise(x, noise_type):
         print('laplacian')
         loc, scale = 0., 1.
         x = np.random.laplace(loc, scale, x.shape)
-        return np_to_torch(x)
+        return torch.from_numpy(x)
     else:
         assert False
 
