@@ -128,11 +128,12 @@ def get_image(path, imsize=-1):
 
 def fill_noise(x, noise_type):
     """Fills tensor `x` with noise of type `noise_type`."""
+    # uniform noise
     if noise_type == 'u':
         print('uniform')
         return x.uniform_()
     # normal or gaussian noise
-    elif noise_type == 'n':
+    elif noise_type == 'g':
         print('normal')
         return x.normal_()
     # poisson noise
@@ -141,6 +142,10 @@ def fill_noise(x, noise_type):
         rate = torch.rand(x.shape) * 5
         x = torch.poisson(rate)
         return x
+    elif noise_type == 'l':
+        loc, scale = 0., 1.
+        x = np.random.laplace(loc, scale, x.shape)
+        return np_to_torch(x)
     else:
         assert False
 
