@@ -175,9 +175,9 @@ def get_noise(input_depth, method, spatial_size, noise_type='u', var=1./10):
         shape = [1, input_depth, spatial_size[0], spatial_size[1]]
         net_input = torch.zeros(shape)
 
-        # fill_noise(net_input, noise_type)
-        # net_input *= var
-        net_input = fill_noise(net_input, noise_type) * var
+        # net_input = fill_noise(net_input, noise_type) * var
+        fill_noise(net_input, noise_type)
+        net_input *= var
     elif method == 'meshgrid':
         assert input_depth == 2
         X, Y = np.meshgrid(np.arange(0, spatial_size[1])/float(
